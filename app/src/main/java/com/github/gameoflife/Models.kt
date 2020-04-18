@@ -1,10 +1,6 @@
 package com.github.gameoflife
 
-enum class Status {
-    Running,
-    Stopped
-}
+import androidx.compose.Model
 
-data class GridState(
-    val items: Set<Pair<Int, Int>>
-)
+@Model
+class State(var grid: MutableSet<Pair<Int, Int>> = mutableSetOf())
