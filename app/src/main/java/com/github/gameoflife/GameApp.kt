@@ -11,6 +11,7 @@ import androidx.ui.layout.Column
 import androidx.ui.layout.Row
 import androidx.ui.layout.Spacer
 import androidx.ui.layout.padding
+import androidx.ui.layout.preferredHeight
 import androidx.ui.layout.preferredWidth
 import androidx.ui.material.Button
 import androidx.ui.material.Divider
@@ -52,8 +53,12 @@ fun AppContent(scaffoldState: ScaffoldState = remember { ScaffoldState() }) {
             )
         },
         bodyContent = {
-            Column(modifier = Modifier.padding(8.dp)) {
-
+            Column(modifier = Modifier.padding(8.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalGravity = Alignment.CenterHorizontally) {
+                Spacer(modifier = Modifier.preferredHeight(defaultSpacerSize))
+                Text(text = "Select a few boxes and then click start")
+                Spacer(modifier = Modifier.preferredHeight(defaultSpacerSize))
                 GameGrid(
                     state = gridState
                 )
@@ -69,6 +74,7 @@ fun AppContent(scaffoldState: ScaffoldState = remember { ScaffoldState() }) {
                         }
                 }
                 Controls(state = gridState)
+
             }
         }
     )
@@ -149,5 +155,9 @@ fun play(state: State): Job? {
 @Preview
 @Composable
 fun PreviewScreen() {
-    AppContent()
+    MaterialTheme(
+        colors = theme
+    ) {
+        AppContent()
+    }
 }
